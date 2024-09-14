@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package shoppingcart;
+
+option go_package = "./src/pb/shoppingcart";
+
+message ProductRequest {
+  int32 productId = 1;
+  int32 quantity = 2;
+  double priceUnit = 3;
+}
+
+message ProductResponse {
+  int32 quantityItems = 1;
+  double priceTotal = 2;
+}
+
+service ShoppingCartService {
+  rpc AddItem (stream ProductRequest) returns (stream ProductResponse);
+}
